@@ -6,8 +6,9 @@ endif
 
 GO_FILES = $(shell find . -type f -name '*.go')
 
-all: lzr-ipv6
-	sudo ip6tables -A OUTPUT -p tcp --tcp-flags RST RST -s $(source-ip) -j DROP
+all: lzr
+	@echo "Set iptables rule before using lzr:"
+	@echo "sudo ip6tables -A OUTPUT -p tcp --tcp-flags RST RST -s device-source-ip -j DROP"
 
 lzr: $(GO_FILES)
 	cd cmd/lzr && go build && cd ../..

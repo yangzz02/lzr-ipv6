@@ -5,21 +5,29 @@ LZR-IPv6 is a modified version of the original [LZRtool](https://github.com/stan
 
 ## Installation
 
+
+### Dependencies
 1. Install and set up [ZMap](https://github.com/zmap/zmap) or [XMap](https://github.com/idealeer/xmap).
 
 2. (Optional) For full L7 handshakes, set up [ZGrab](https://github.com/zmap/zgrab2).
 
 3. Set up Go environment ($GOPATH), see Go documentation](https://go.dev/doc/install).
 
+### Building
+
+```
+make all
+```
+
 ## Usage
 
 Configure the corresponding iptables rules to ensure the kernel does not interfere with LZR-IPv6 operations.
 
 ```
-$ sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s $source_ip -j DROP
+$ sudo ip6tables -A OUTPUT -p tcp --tcp-flags RST RST -s $source_ip -j DROP
 ```
 
-#### Basic IPv6 Scanning
+### Basic IPv6 Scanning
 
 Scan random port (8000) on IPv6 addresses:
 
@@ -29,7 +37,7 @@ sudo xmap -6 -p 8000 -M tcp_syn -I $ipv6_targets -R $PACKETS_PER_SECOND -O json 
 sudo ./lzr -IPv6 --handshakes http,tls
 ```
 
-#### Custom IPv6 Address List Scanning
+### Custom IPv6 Address List Scanning
 
 ```
 cat $ipv6_services | sudo ./lzr -IPv6 --handshakes http -sendSYNs -sourceIP $source-ip -gatewayMac $gateway
@@ -42,7 +50,7 @@ Input file format example:
 2001:db8::2:80
 ```
 
-#### Full L7 Handshakes (with ZGrab)
+### Full L7 Handshakes (with ZGrab)
 
 ```
 sudo xmap -6 -p 8000 -M tcp_syn -I $ipv6_targets -R $PACKETS_PER_SECOND -O json --output-filter="success = 1 && repeat = 0"  \

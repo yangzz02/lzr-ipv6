@@ -5,7 +5,6 @@ temp
 *.csv
 LZR
 lzr
-cmd/lzr/lzr
 data/
 output/
 *.data
