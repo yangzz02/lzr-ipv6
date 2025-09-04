@@ -1,0 +1,15 @@
+*prof
+*.json
+tmp
+temp
+*.csv
+LZR
+lzr
+cmd/lzr/lzr
+data/
+output/
+*.data
+*.sh
+input/
+input/*
+README_*
