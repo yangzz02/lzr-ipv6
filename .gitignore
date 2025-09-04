@@ -6,6 +6,7 @@ temp
 LZR
 lzr
 data/
+cmd/lzr/lzr
 output/
 *.data
 *.sh
