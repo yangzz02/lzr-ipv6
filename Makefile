@@ -6,8 +6,8 @@ endif
 
 GO_FILES = $(shell find . -type f -name '*.go')
 
-all: lzr
-	sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s $(source-ip) -j DROP
+all: lzr-ipv6
+	sudo ip6tables -A OUTPUT -p tcp --tcp-flags RST RST -s $(source-ip) -j DROP
 
 lzr: $(GO_FILES)
 	cd cmd/lzr && go build && cd ../..
@@ -23,4 +23,4 @@ clean:
 	cd cmd/lzr && go clean
 	rm -f lzr
 	@echo "Don't forget to delete iptables rule using:"
-	@echo "sudo iptables -L --line-numbers && sudo iptables -D OUTPUT \TK"
+	@echo "sudo ip6tables -L --line-numbers && sudo ip6tables -D OUTPUT \TK"
