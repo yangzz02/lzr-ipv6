@@ -11,7 +11,7 @@ LZR-IPv6 is a modified version of the original [LZRtool](https://github.com/stan
 
 2. (Optional) For full L7 handshakes, set up [ZGrab](https://github.com/zmap/zgrab2).
 
-3. Set up Go environment ($GOPATH), see Go documentation](https://go.dev/doc/install).
+3. Set up Go environment ($GOPATH), see [Go documentation](https://go.dev/doc/install).
 
 ### Building
 
